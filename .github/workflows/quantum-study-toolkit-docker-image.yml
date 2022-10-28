@@ -1,0 +1,22 @@
+name: Quantum Study Toolkit Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'quantum-study-toolkit/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'quantum-study-toolkit/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file quantum-study-toolkit/Dockerfile --tag quantum-study-toolkit:$(date +%s)
